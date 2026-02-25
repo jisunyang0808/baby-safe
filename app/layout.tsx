@@ -1,5 +1,4 @@
 import React from "react";
-import "./globals.css"; // 이 줄이 에러가 난다면 삭제해도 됩니다.
 
 export const metadata = {
   title: "베이비 세이프",
@@ -13,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body style={{ margin: 0, backgroundColor: "#f8fafc" }}>
+        {children}
+      </body>
     </html>
   );
 }
