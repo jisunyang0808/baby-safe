@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Bell, BookOpen, FlaskConical } from "lucide-react";
 // 파일 위치에 맞게 수정된 경로
-import { RecallCard } from "../RecallCard"; 
+import { RecallCard } from "./RecallCard";
 import { mockRecalls } from "../mock-data";
 
 export default function HomePage() {
