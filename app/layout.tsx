@@ -1,10 +1,5 @@
 import React from "react";
 
-export const metadata = {
-  title: "베이비 세이프",
-  description: "아이 안전 리콜 정보",
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -12,7 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body style={{ margin: 0, backgroundColor: "#f8fafc" }}>
+      <body style={{ margin: 0, padding: 0, fontFamily: 'sans-serif', backgroundColor: '#f0f2f5' }}>
         {children}
       </body>
     </html>
