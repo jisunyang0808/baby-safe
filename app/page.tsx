@@ -3,7 +3,7 @@
 import React from "react";
 import { AlertTriangle, ExternalLink, Calendar, Package } from "lucide-react";
 
-// --- [컴포넌트 1: 리콜 카드 디자인] ---
+// --- 1. 카드 디자인 컴포넌트 (파일 하나에 합침) ---
 function RecallCard({ recall }: { recall: any }) {
   if (!recall) return null;
 
@@ -27,14 +27,14 @@ function RecallCard({ recall }: { recall: any }) {
           </span>
         </div>
         <h3 className="font-bold text-base mb-1 text-slate-900">{recall.title}</h3>
-        <p className="text-sm mb-3 text-slate-500">{recall.brand} · {recall.productName}</p>
+        <p className="text-sm mb-3 text-slate-500 font-medium">{recall.brand} · {recall.productName}</p>
         <div className="text-xs p-3 rounded-lg mb-3 flex gap-2 bg-red-50 text-red-700 border border-red-100">
           <AlertTriangle size={14} className="flex-shrink-0 mt-0.5" />
           <span>{recall.hazardDescription}</span>
         </div>
         <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs text-slate-400">
           <span className="flex items-center gap-1"><Calendar size={12} /> {recall.recallDate}</span>
-          <a href={recall.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center gap-1">
+          <a href={recall.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline flex items-center gap-1">
             상세보기 <ExternalLink size={11} />
           </a>
         </div>
@@ -43,7 +43,7 @@ function RecallCard({ recall }: { recall: any }) {
   );
 }
 
-// --- [컴포넌트 2: 메인 페이지 화면] ---
+// --- 2. 메인 페이지 화면 ---
 export default function HomePage() {
   const mockRecalls = [
     {
@@ -57,29 +57,17 @@ export default function HomePage() {
       sourceUrl: "#"
     },
     {
-        id: "2",
-        title: "실리콘 젖병 세척 솔 모 빠짐",
-        brand: "베이비케어",
-        productName: "클린브러쉬 PRO",
-        severity: "medium",
-        recallDate: "2026-02-24",
-        hazardDescription: "세척 중 실리콘 모가 빠져 아이가 삼킬 위험이 있습니다.",
-        sourceUrl: "#"
-      }
+      id: "2",
+      title: "실리콘 젖병 세척 솔 모 빠짐",
+      brand: "베이비케어",
+      productName: "클린브러쉬 PRO",
+      severity: "medium",
+      recallDate: "2026-02-24",
+      hazardDescription: "실리콘 모가 빠져 아이가 삼킬 위험이 있습니다.",
+      sourceUrl: "#"
+    }
   ];
 
   return (
     <main className="min-h-screen bg-slate-50 p-6">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2 text-slate-900">우리 아이 안전 알림판</h1>
-        <p className="text-slate-500 mb-8">최신 육아용품 리콜 정보를 실시간으로 확인하세요.</p>
-        
-        <div className="grid gap-4 md:grid-cols-2">
-          {mockRecalls.map((recall) => (
-            <RecallCard key={recall.id} recall={recall} />
-          ))}
-        </div>
-      </div>
-    </main>
-  );
-}
