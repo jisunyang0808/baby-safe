@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { ArrowRight, Bell, BookOpen, FlaskConical } from "lucide-react";
-import { RecallList } from "@/app/components/RecallList";
-import { StatCard } from "@/app/components/StatCard";
-import { AlertBanner } from "@/app/components/AlertBanner";
-import { mockRecalls } from "@/app/lib/mock-data";
 
+// 🟢 파일 위치에 맞게 수정된 경로입니다.
+// 현재 위치(app폴더)에서 한 칸 위(..)에 있는 파일을 불러옵니다.
+import { RecallCard } from "../RecallCard"; 
+import { mockRecalls } from "../mock-data";
+
+// 만약 StatCard나 AlertBanner 파일이 없다면 에러가 날 수 있으니,
+// 일단 아래처럼 임시로 주석 처리하거나 삭제하는 것이 안전합니다.
+// import { StatCard } from "../StatCard"; 
+// import { AlertBanner } from "../AlertBanner";
 export default function HomePage() {
   const criticalCount = mockRecalls.filter(
     (r) => r.severity === "critical" && r.status === "active"
