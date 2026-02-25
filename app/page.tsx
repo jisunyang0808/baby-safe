@@ -3,7 +3,7 @@
 import React from "react";
 import { AlertTriangle, ExternalLink, Calendar, Package } from "lucide-react";
 
-// --- 1. 리콜 카드 컴포넌트를 이 파일 안에 직접 넣기 ---
+// --- [컴포넌트 1: 리콜 카드 디자인] ---
 function RecallCard({ recall }: { recall: any }) {
   if (!recall) return null;
 
@@ -43,7 +43,7 @@ function RecallCard({ recall }: { recall: any }) {
   );
 }
 
-// --- 2. 메인 페이지 컴포넌트 ---
+// --- [컴포넌트 2: 메인 페이지 화면] ---
 export default function HomePage() {
   const mockRecalls = [
     {
@@ -55,14 +55,26 @@ export default function HomePage() {
       recallDate: "2026-02-25",
       hazardDescription: "충돌 시 버클 파손 위험이 있습니다.",
       sourceUrl: "#"
-    }
+    },
+    {
+        id: "2",
+        title: "실리콘 젖병 세척 솔 모 빠짐",
+        brand: "베이비케어",
+        productName: "클린브러쉬 PRO",
+        severity: "medium",
+        recallDate: "2026-02-24",
+        hazardDescription: "세척 중 실리콘 모가 빠져 아이가 삼킬 위험이 있습니다.",
+        sourceUrl: "#"
+      }
   ];
 
   return (
     <main className="min-h-screen bg-slate-50 p-6">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6 text-slate-900">최신 리콜 정보</h1>
-        <div className="grid gap-4">
+        <h1 className="text-3xl font-bold mb-2 text-slate-900">우리 아이 안전 알림판</h1>
+        <p className="text-slate-500 mb-8">최신 육아용품 리콜 정보를 실시간으로 확인하세요.</p>
+        
+        <div className="grid gap-4 md:grid-cols-2">
           {mockRecalls.map((recall) => (
             <RecallCard key={recall.id} recall={recall} />
           ))}
