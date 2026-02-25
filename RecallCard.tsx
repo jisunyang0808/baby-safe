@@ -1,20 +1,22 @@
+"use client";
+
 import React from "react";
 import { AlertTriangle, ExternalLink, Calendar, Package } from "lucide-react";
 
 // --- 설정값 정의 ---
-const severityConfig: any = {
+const severityConfig: Record<string, any> = {
   critical: { label: "매우 높음", color: "text-red-700", bg: "bg-red-50", border: "border-red-200", dot: "bg-red-500" },
   high: { label: "높음", color: "text-orange-700", bg: "bg-orange-50", border: "border-orange-200", dot: "bg-orange-500" },
   medium: { label: "중간", color: "text-amber-700", bg: "bg-amber-50", border: "border-amber-200", dot: "bg-amber-500" },
   low: { label: "낮음", color: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200", dot: "bg-emerald-500" },
 };
 
-const statusConfig: any = {
+const statusConfig: Record<string, any> = {
   active: { label: "진행중", color: "text-blue-600" },
   resolved: { label: "조치완료", color: "text-slate-500" },
 };
 
-const categoryConfig: any = {
+const categoryConfig: Record<string, any> = {
   feeding: { label: "수유용품", emoji: "🍼" },
   sleeping: { label: "침구/수면", emoji: "🛏️" },
   clothing: { label: "의류", emoji: "👕" },
@@ -26,7 +28,7 @@ const categoryConfig: any = {
 
 // --- 메인 컴포넌트 ---
 export function RecallCard({ recall }: { recall: any }) {
-  if (!recall) return null; // 데이터가 없을 경우 에러 방지
+  if (!recall) return null;
 
   const severity = severityConfig[recall.severity] || severityConfig.medium;
   const status = statusConfig[recall.status] || statusConfig.active;
@@ -41,4 +43,57 @@ export function RecallCard({ recall }: { recall: any }) {
             <span className={`w-1.5 h-1.5 rounded-full ${severity.dot}`} />
             위험도 {severity.label}
           </span>
-          <span className="text-xs font-medium px-2.5
+          <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-white border text-slate-600 border-slate-200">
+            {status.label}
+          </span>
+          <span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+            {category.emoji} {category.label}
+          </span>
+        </div>
+
+        <h3 className="font-bold text-base mb-1 text-slate-900">{recall.title}</h3>
+        <p className="text-sm mb-3 text-slate-500">
+          <span className="font-medium text-slate-700">{recall.brand}</span> · {recall.productName}
+        </p>
+
+        <div className="text-xs p-3 rounded-lg mb-3 flex gap-2 bg-red-50 text-red-700 border border-red-100">
+          <AlertTriangle size={14} className="flex-shrink-0 mt-0.5" />
+          <span>{recall.hazardDescription}</span>
+        </div>
+
+        <p className="text-sm leading-relaxed mb-4 text-slate-600">{recall.summary}</p>
+
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {recall.tags && recall.tags.map((tag: string) => (
+            <span key={tag} className="text-xs px-2 py-0.5 rounded-md bg-slate-50 text-slate-500 border border-slate-100">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+          <div className="flex items-center gap-3 text-xs text-slate-400">
+            <span className="flex items-center gap-1">
+              <Calendar size={12} />
+              {recall.recallDate}
+            </span>
+            {recall.affectedUnits && (
+              <span className="flex items-center gap-1">
+                <Package size={12} />
+                {Number(recall.affectedUnits).toLocaleString()}개
+              </span>
+            )}
+          </div>
+          <a
+            href={recall.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline"
+          >
+            {recall.source} <ExternalLink size={11} />
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+}
