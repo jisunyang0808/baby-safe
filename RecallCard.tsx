@@ -49,29 +49,4 @@ export function RecallCard({ recall }: any) {
         <h3 className="font-bold text-base mb-1 text-slate-900">{recall.title}</h3>
         <p className="text-sm mb-3 text-slate-500"><span className="font-medium text-slate-700">{recall.brand}</span> · {recall.productName}</p>
 
-        <div className="text-xs p-3 rounded-lg mb-3 flex gap-2 bg-red-50 text-red-700 border border-red-100">
-          <AlertTriangle size={14} className="flex-shrink-0 mt-0.5" />
-          <span>{recall.hazardDescription}</span>
-        </div>
-
-        <p className="text-sm leading-relaxed mb-4 text-slate-600">{recall.summary}</p>
-
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {recall.tags.map((tag: string) => (
-            <span key={tag} className="text-xs px-2 py-0.5 rounded-md bg-slate-100 text-slate-600">#{tag}</span>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-          <div className="flex items-center gap-3 text-xs text-slate-400">
-            <span className="flex items-center gap-1"><Calendar size={12} />{formatDate(recall.recallDate)}</span>
-            {recall.affectedUnits && <span className="flex items-center gap-1"><Package size={12} />{formatNumber(recall.affectedUnits)}개</span>}
-          </div>
-          <a href={recall.sourceUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline">
-            {recall.source} <ExternalLink size={11} />
-          </a>
-        </div>
-      </div>
-    </article>
-  );
-}
+        <div className
