@@ -2,8 +2,6 @@
 
 import React from "react";
 
-// 아이콘 라이브러리(lucide-react)를 아예 삭제했습니다.
-// 이 코드는 추가 설치 없이 무조건 실행됩니다.
 export default function HomePage() {
   const recalls = [
     {
@@ -17,24 +15,23 @@ export default function HomePage() {
   ];
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto', fontFamily: 'system-ui, sans-serif' }}>
-      <header style={{ borderBottom: '2px solid #000', paddingBottom: '10px', marginBottom: '30px' }}>
-        <h1 style={{ fontSize: '28px', margin: 0 }}>👶 베이비 세이프</h1>
-        <p style={{ color: '#666' }}>빌드 성공을 축하합니다!</p>
+    <div style={{ padding: '20px', maxWidth: '500px', margin: '0 auto', fontFamily: 'sans-serif' }}>
+      <header style={{ marginBottom: '30px' }}>
+        <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1e293b' }}>👶 베이비 세이프</h1>
+        <p style={{ color: '#64748b', fontSize: '14px' }}>실시간 리콜 정보를 확인하세요.</p>
       </header>
 
-      {recalls.map((item) => (
-        <div key={item.id} style={{ border: '1px solid #ddd', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-          <div style={{ color: 'red', fontWeight: 'bold', fontSize: '14px', marginBottom: '8px' }}>⚠️ 위험도: 매우 높음</div>
-          <h2 style={{ fontSize: '20px', margin: '0 0 4px 0' }}>{item.title}</h2>
-          <p style={{ color: '#888', marginBottom: '16px' }}>{item.brand} | {item.productName}</p>
-          
-          <div style={{ backgroundColor: '#fff5f5', padding: '12px', borderRadius: '8px', color: '#c53030', fontSize: '14px', lineHeight: '1.5' }}>
-            <strong>위험 요인:</strong> {item.hazard}
+      {recalls.map(item => (
+        <div key={item.id} style={{ backgroundColor: 'white', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+          <div style={{ color: '#dc2626', fontSize: '12px', fontWeight: 'bold', marginBottom: '8px' }}>⚠️ 위험도: 매우 높음</div>
+          <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0' }}>{item.title}</h2>
+          <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '16px' }}>{item.brand} · {item.productName}</p>
+          <div style={{ backgroundColor: '#f1f5f9', padding: '12px', borderRadius: '8px', fontSize: '13px', color: '#475569' }}>
+            {item.hazard}
           </div>
-
-          <div style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #eee', fontSize: '12px', color: '#aaa' }}>
-            리콜 일자: {item.date}
+          <div style={{ marginTop: '15px', paddingTop: '10px', borderTop: '1px solid #f1f5f9', fontSize: '12px', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+            <span>{item.date}</span>
+            <span style={{ color: '#2563eb', fontWeight: 'bold' }}>상세보기 →</span>
           </div>
         </div>
       ))}
